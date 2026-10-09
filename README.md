@@ -84,4 +84,4 @@ OAuth callback URLs: `<BETTER_AUTH_URL>/api/auth/callback/google` and `<BETTER_A
 
 ---
 
-> সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
+> সকল দাম সম্ভাব্য বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
