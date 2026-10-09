@@ -8,7 +8,9 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
+import ToastProvider from "@/components/ToastProvider";
 import { getCategories, getProducts } from "@/lib/api";
+import { getSession } from "@/lib/session";
 
 export const metadata = {
   title: {
@@ -22,18 +24,20 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   // The navbar and ticker should never break the page if the API is slow or down.
-  const [categories, products] = await Promise.all([
+  const [categories, products, session] = await Promise.all([
     getCategories().catch(() => []),
     getProducts().catch(() => []),
+    getSession(),
   ]);
 
   return (
     <html lang="bn" data-theme="bazardor">
       <body className="min-h-screen flex flex-col">
-        <Navbar categories={categories} />
+        <Navbar categories={categories} user={session?.user ?? null} />
         <PriceTicker products={products} />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ToastProvider />
       </body>
     </html>
   );

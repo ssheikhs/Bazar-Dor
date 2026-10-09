@@ -1,7 +1,8 @@
 import Link from "next/link";
+import UserMenu from "./UserMenu";
 
 export default function NavAuth({ user }) {
-  if (user) return null;
+  if (user) return <UserMenu user={user} />;
 
   return (
     <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
