@@ -5,6 +5,11 @@ import "@fontsource/hind-siliguri/600.css";
 import "@fontsource/hind-siliguri/700.css";
 import "./globals.css";
 
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import PriceTicker from "@/components/PriceTicker";
+import { getCategories, getProducts } from "@/lib/api";
+
 export const metadata = {
   title: {
     default: "বাজার দর — আজকের বাজারের দাম এক নজরে",
@@ -15,11 +20,20 @@ export const metadata = {
   icons: { icon: "/logo-icon.png" },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // The navbar and ticker should never break the page if the API is slow or down.
+  const [categories, products] = await Promise.all([
+    getCategories().catch(() => []),
+    getProducts().catch(() => []),
+  ]);
+
   return (
     <html lang="bn" data-theme="bazardor">
       <body className="min-h-screen flex flex-col">
+        <Navbar categories={categories} />
+        <PriceTicker products={products} />
         <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
