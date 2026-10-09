@@ -26,12 +26,13 @@ function SummaryCard({ label, value, note, tone }) {
 export default async function ProductDetailsPage({ params }) {
   const { slug } = await params;
 
-  // Protected route — logged-out visitors go to sign in and come back here afterwards.
-  const session = await getSession();
-  if (!session) redirect(`/signin?redirect=${encodeURIComponent(`/product/${slug}`)}`);
+  const [product, session] = await Promise.all([getProductBySlug(slug), getSession()]);
 
-  const product = await getProductBySlug(slug);
+  // Unknown product → friendly 404 (even before login)
   if (!product) notFound();
+
+  // Protected route — logged-out visitors go to sign in and come back here afterwards.
+  if (!session) redirect(`/signin?redirect=${encodeURIComponent(`/product/${slug}`)}`);
 
   const summary = getPriceSummary(product);
   const change = changeInfo(product.change);

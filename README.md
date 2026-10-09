@@ -4,7 +4,7 @@
 
 BazarDor is a Bangla price-tracking website for Bangladesh's daily essentials. It covers rice, lentils, oil, vegetables, fish, meat, eggs and milk, and spices. For each item you can see today's price, how much it rose or fell since yesterday, and the lowest, highest and average price across markets in every division of the country.
 
-🔗 **Live site:** _LIVE_LINK_
+🔗 **Live site:** https://bazar-dor-six-xi.vercel.app
 📦 **Repository:** https://github.com/ssheikhs/Bazar-Dor
 
 ---
