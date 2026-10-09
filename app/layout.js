@@ -12,6 +12,10 @@ import ToastProvider from "@/components/ToastProvider";
 import { getCategories, getProducts } from "@/lib/api";
 import { getSession } from "@/lib/session";
 
+// Every page reads the login session (navbar), so render on each request.
+// API responses are still cached for 5 minutes by fetch() in lib/api.js.
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: {
     default: "বাজার দর — আজকের বাজারের দাম এক নজরে",
