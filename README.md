@@ -34,12 +34,13 @@ BazarDor is a Bangla price-tracking website for Bangladesh's daily essentials. I
 
 ## 📡 API
 
-Data comes from the Bazar Dor API. If the primary URL fails, the app falls back to the second one automatically.
+Data comes from the Bazar Dor API. The app tries three sources in order and automatically uses the first one that returns valid data, with a 6-second timeout per source:
 
-- `https://api.api-store.workers.dev/api/bazardor` (primary)
-- `https://api.abcz.workers.dev/api/bazardor` (fallback)
+1. `https://openapi.programming-hero.com/api/bazardor` (recommended)
+2. `https://api.api-store.workers.dev/api/bazardor`
+3. `https://api.abcz.workers.dev/api/bazardor`
 
-Endpoints used: `/products`, `/products?category=:slug`, `/categories`, `/categories/:slug`
+Endpoints used: `/products` and `/categories`. Category filtering and single-product lookup are done in the app, so every source behaves the same.
 
 ## 🗂️ Project structure
 
